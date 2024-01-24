@@ -1,0 +1,60 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // Load tasks from local storage on page load
+    loadTasks();
+
+    // Add event listener for the "Add Task" button
+    document.getElementById('task-title').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            addTask();
+        }
+    });
+});
+
+function addTask() {
+    // Get task details from the input fields
+    const title = document.getElementById('task-title').value.trim();
+    const description = document.getElementById('task-description').value.trim();
+
+    // Check if the title is not empty
+    if (title !== '') {
+        // Create a new task object
+        const task = {
+            title: title,
+            description: description,
+            completed: false,
+        };
+
+        // Get the existing tasks from local storage
+        const tasks = getTasks();
+
+        // Add the new task to the array
+        tasks.push(task);
+
+        // Save the updated tasks to local storage
+        saveTasks(tasks);
+
+        // Clear input fields
+        document.getElementById('task-title').value = '';
+        document.getElementById('task-description').value = '';
+
+        // Reload the tasks
+        loadTasks();
+    }
+}
+
+function loadTasks() {
+    const taskList = document.getElementById('task-list');
+    taskList.innerHTML = '';
+
+    // Get tasks from local storage
+    const tasks = getTasks();
+
+    // Display tasks on the page
+    tasks.forEach(function (task, index) {
+        const taskItem = document.createElement('div');
+        taskItem.classList.add('task-item');
+        taskItem.innerHTML = `
+            <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${index})"/>
+            <span>${task.title}</span>
+            <button onclick="editTask(${index})">Edit</button>
+            <button onclick="deleteTask(${index})">Delete</button>
