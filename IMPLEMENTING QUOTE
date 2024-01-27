@@ -1,0 +1,26 @@
+import React, { useState, useEffect } from 'react';
+import { View, Text, Button } from 'react-native';
+
+const HomeScreen = () => {
+  const [quote, setQuote] = useState('');
+
+  useEffect(() => {
+    // Fetch a new quote from an API or use a predefined list
+    // For simplicity, let's use a static quote here
+    setQuote("Your daily quote: 'Stay inspired!'");
+  }, []);
+
+  const shareQuote = () => {
+    // Implement sharing functionality
+    // You can use the React Native Share API
+  };
+
+  return (
+    <View>
+      <Text>{quote}</Text>
+      <Button title="Share" onPress={shareQuote} />
+    </View>
+  );
+};
+
+export default HomeScreen;
