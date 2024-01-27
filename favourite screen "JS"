@@ -1,0 +1,17 @@
+// In src/screens/FavoritesScreen.js
+
+import React from 'react';
+import { View, Text } from 'react-native';
+
+const FavoritesScreen = () => {
+  // Implement fetching and displaying favorite quotes
+
+  return (
+    <View>
+      <Text>Favorites Screen</Text>
+      {/* Display the list of favorite quotes */}
+    </View>
+  );
+};
+
+export default FavoritesScreen;
