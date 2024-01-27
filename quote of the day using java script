@@ -1,0 +1,42 @@
+// In src/screens/HomeScreen.js
+
+import React, { useState, useEffect } from 'react';
+import { View, Text, Button } from 'react-native';
+import { Card } from 'react-native-elements';
+
+const HomeScreen = ({ navigation }) => {
+  const [quote, setQuote] = useState('');
+
+  useEffect(() => {
+    fetchRandomQuote();
+  }, []);
+
+  const fetchRandomQuote = async () => {
+    // Implement fetching a random quote (similar to previous code)
+  };
+
+  const shareQuote = () => {
+    // Implement sharing functionality
+  };
+
+  const addToFavorites = () => {
+    // Implement adding the current quote to favorites
+  };
+
+  return (
+    <View>
+      <Card>
+        <Text>{quote}</Text>
+      </Card>
+      <Button title="New Quote" onPress={fetchRandomQuote} />
+      <Button title="Share" onPress={shareQuote} />
+      <Button title="Add to Favorites" onPress={addToFavorites} />
+      <Button
+        title="View Favorites"
+        onPress={() => navigation.navigate('Favorites')}
+      />
+    </View>
+  );
+};
+
+export default HomeScreen;
